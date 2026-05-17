@@ -1,0 +1,32 @@
+<table style="width: 100%; background-color: #f8f9fa; padding: 40px 0; font-family: Arial, sans-serif; box-sizing: border-box;">
+    <tr>
+        <td align="center">
+            <table style="max-width: 600px; width: 100%; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 40px 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); box-sizing: border-box; text-align: center;">
+                <tr>
+                    <td style="color: #495057; font-size: 16px; line-height: 1.6;">
+
+                        <h2 style="margin-top: 0; color: #343a40; font-size: 24px; margin-bottom: 15px;">
+                            Привіт, {{name}}!
+                        </h2>
+
+                        <p style="margin-bottom: 30px; color: #6c757d; font-size: 16px;">
+                            To confirm your email address, please click the button below:
+                        </p>
+
+                        <div style="margin-bottom: 30px;">
+                            <a href="{{frontUrl}}/auth/verify-email?token={{verifyLink}}"
+                            style="background-color: #007bff; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 6px; display: inline-block; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);">
+                            Confirm
+                            </a>
+                        </div>
+
+                        <p style="margin-top: 20px; margin-bottom: 0; font-size: 13px; color: #adb5bd; line-height: 1.5;">
+                            If you didn't create an account on our platform, you can safely ignore this email.
+                        </p>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
