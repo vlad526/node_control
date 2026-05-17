@@ -1,0 +1,1747 @@
+{
+  "info": {
+    "_postman_id": "adf9660d-9d55-45b7-a2e7-9ce48ba0e1c2",
+    "name": "Cars API",
+    "description": "Колекція API для тестування ролей Buyer, Seller, Manager, Admin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42792831"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "/ Sign Up",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "\r",
+                  "const body = pm.response.json();\r",
+                  "const accessToken = body.tokens.accessToken;\r",
+                  "const refreshToken = body.tokens.refreshToken;\r",
+                  "\r",
+                  "\r",
+                  "pm.environment.set(\"sellerToken\", accessToken);\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Olexandr\",\n  \"age\": 35,\n  \"email\": \"Alex2563@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"premium\"\n  \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_HOST}}/auth/sign-up",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "auth",
+                "sign-up"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST / Sign Up",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Olha\",\n  \"age\": 41,\n  \"email\": \"Art2563@gmail.com\",\n  \"password\": \"Password123\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/auth/sign-up",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "auth",
+                    "sign-up"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"user\": {\r\n        \"name\": \"Olha\",\r\n        \"email\": \"Test@gmail.com\",\r\n        \"password\": \"$2b$10$UimbnAJddZT1oxaxZsvOee/4E4FmdC0Uz5K/MwSSJYfMwosFOuB/m\",\r\n        \"age\": 41,\r\n        \"roles\": [\r\n            {\r\n                \"_id\": \"689e257d5cea365637ad3840\",\r\n                \"name\": \"buyer\",\r\n                \"createdAt\": \"2025-08-14T18:05:50.353Z\",\r\n                \"permissions\": [\r\n                    \"68a0f7835cea365637ad4f95\"\r\n                ],\r\n                \"scope\": \"platform\",\r\n                \"updatedAt\": \"2025-08-27T09:35:28.006Z\",\r\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\r\n            }\r\n        ],\r\n        \"isVerified\": false,\r\n        \"isDeleted\": false,\r\n        \"organizationId\": null,\r\n        \"accountType\": \"base\",\r\n        \"_id\": \"68aeda45505ee45294912b38\",\r\n        \"createdAt\": \"2025-08-27T10:13:25.373Z\",\r\n        \"updatedAt\": \"2025-08-27T10:13:25.373Z\"\r\n    },\r\n    \"tokens\": {\r\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGFlZGE0NTUwNWVlNDUyOTQ5MTJiMzgiLCJyb2xlcyI6WyJidXllciJdLCJuYW1lIjoiT2xoYSIsImVtYWlsIjoiQXJ0MTY0NzUzQGdtYWlsLmNvbSIsImlhdCI6MTc1NjI4OTYwNSwiZXhwIjoxNzU2MjkxNDA1fQ.ElK0o1Iay7RJBHF3hr2dTqYIVJPcqRIvGBbgb7t4_iw\",\r\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGFlZGE0NTUwNWVlNDUyOTQ5MTJiMzgiLCJyb2xlcyI6WyJidXllciJdLCJuYW1lIjoiT2xoYSIsImVtYWlsIjoiQXJ0MTY0NzUzQGdtYWlsLmNvbSIsImlhdCI6MTc1NjI4OTYwNSwiZXhwIjoxNzU2NTQ4ODA1fQ.-fk7-frNGut-qAYhDDjHm3HoIEhEN1RzlLa_ELIudkc\"\r\n    }\r\n}"
+            },
+            {
+              "name": "POST / Sign Up",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Olexandr\",\n  \"age\": 35,\n  \"email\": \"Alex2563@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"premium\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_HOST}}/auth/sign-up",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "sign-up"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1207"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4b7-Fl4LjLfY9jvRayaMTx3oxiWN2y4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:02:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"name\": \"Olexandr\",\n        \"email\": \"Alex2563@gmail.com\",\n        \"password\": \"$2b$10$wWoptq3t3//W57ApsvwqGeN4M1Wqa07POl4KkbZejY//vDWYNqU5O\",\n        \"age\": 35,\n        \"roles\": [\n            {\n                \"_id\": \"689e257d5cea365637ad3841\",\n                \"name\": \"seller\",\n                \"createdAt\": \"2025-08-14T18:05:50.405Z\",\n                \"permissions\": [\n                    \"68a0f7835cea365637ad4f96\",\n                    \"68a0f7835cea365637ad4f97\",\n                    \"68a0f7835cea365637ad4f95\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-28T18:47:16.551Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            }\n        ],\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"organizationId\": null,\n        \"accountType\": \"premium\",\n        \"_id\": \"68b0a7c6f64cd65d37d504b6\",\n        \"createdAt\": \"2025-08-28T19:02:30.848Z\",\n        \"updatedAt\": \"2025-08-28T19:02:30.848Z\"\n    },\n    \"tokens\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGIwYTdjNmY2NGNkNjVkMzdkNTA0YjYiLCJyb2xlcyI6WyJzZWxsZXIiXSwibmFtZSI6Ik9sZXhhbmRyIiwiZW1haWwiOiJBbGV4MjU2M0BnbWFpbC5jb20iLCJpYXQiOjE3NTY0MDc3NTAsImV4cCI6MTc1NjQwOTU1MH0.NImd8HiwXbQdX8yhMwtF1eb14CRR4gpZ2XNdPai57Ak\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGIwYTdjNmY2NGNkNjVkMzdkNTA0YjYiLCJyb2xlcyI6WyJzZWxsZXIiXSwibmFtZSI6Ik9sZXhhbmRyIiwiZW1haWwiOiJBbGV4MjU2M0BnbWFpbC5jb20iLCJpYXQiOjE3NTY0MDc3NTAsImV4cCI6MTc1NjY2Njk1MH0.JK_HuyHdvz5wb2DUCR3QD-Sm5objSoCki0QYg7iTa2g\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "/ Sign In",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const body = pm.response.json();\r",
+                  "const accessToken = body.tokens.accessToken;\r",
+                  "const refreshToken = body.tokens.refreshToken;\r",
+                  "\r",
+                  "\r",
+                  "pm.environment.set(\"adminToken\", accessToken);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"email\": \"admin@example.com\",\n  \"password\": \"SuperSecurePassword123\"\n  \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_HOST}}/auth/sign-in",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "auth",
+                "sign-in"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST / Sign In",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer ",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"email\": \"admin@example.com\",\n  \"password\": \"SuperSecurePassword123\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/auth/sign-in",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "auth",
+                    "sign-in"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 27 Aug 2025 10:25:34 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "975add9bf8842313-KBP"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=01c3ffcdd0185684"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=f2db46c1cba4e2aa"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1756290394"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "Express"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"5aa-qR7Fg7+gxp8R4gtGUIJiK27f5qc\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "169"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "__cf_bm=jCnjIsn65O.A9lfZPTl6mkSeLtThVwxv8jJTOg8losQ-1756290334-1.0.1.1-HNxna_XjSI9Y_XyWv0dAID93gXZ5NGzirySwyPE7w2aKoaq.nenjxHqHp1FZpMIca3HfIpy0vh8nyd3d0GLWyMqC4DeTepvnKrDxLzg5hPE; path=/; expires=Wed, 27-Aug-25 10:55:34 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"_id\": \"68a0fa4db4e1a9bd0d0b8a14\",\n        \"name\": \"Super Admin\",\n        \"email\": \"admin@example.com\",\n        \"password\": \"$2b$10$.c93f/k/9RsumJGRR4Ovi.oQ1TKXRVp.FZhBuX0z61kezwkd.ORA6\",\n        \"age\": 30,\n        \"roles\": [\n            {\n                \"_id\": \"689e257d5cea365637ad3843\",\n                \"name\": \"admin\",\n                \"createdAt\": \"2025-08-14T18:05:50.508Z\",\n                \"permissions\": [\n                    \"68a0f7835cea365637ad4f94\",\n                    \"68a0f7845cea365637ad4f99\",\n                    \"68a0f7835cea365637ad4f96\",\n                    \"68a0f7845cea365637ad4f9e\",\n                    \"68a0f7835cea365637ad4f98\",\n                    \"68a0f7845cea365637ad4f9c\",\n                    \"68a0f7835cea365637ad4f97\",\n                    \"68a0f7845cea365637ad4f9f\",\n                    \"68a0f7845cea365637ad4f9a\",\n                    \"68a0f7845cea365637ad4f9d\",\n                    \"68a0f7835cea365637ad4f95\",\n                    \"68a0f7845cea365637ad4f9b\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-27T09:35:28.310Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            }\n        ],\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"organizationId\": null,\n        \"accountType\": \"base\",\n        \"createdAt\": \"2025-08-16T21:38:21.829Z\",\n        \"updatedAt\": \"2025-08-16T21:38:21.829Z\"\n    },\n    \"tokens\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTYyOTIxMDR9.Q7gRzKBBfDDzzkXLzKzayt_mmYSTGpyfN2mY5J_Qz_4\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTY1NDk1MDR9.gJo9k5JR4r_Y7qES1stRG_RwnOKtAhl4ghLZmPIzUrU\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users (Admin)",
+      "item": [
+        {
+          "name": "[Admin] Get users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/users",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Admin] GET /users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  }
+                ],
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/users",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "24291"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5ee3-Kf6eutczDe9nS8TGgjHOBgdJ3bI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 18:48:37 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": [\n        {\n            \"_id\": \"687254bd666b72d0430b95ee\",\n            \"name\": \"Lucia\",\n            \"email\": \"qwe@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6873b8900016fd6d1e25fd26\",\n            \"name\": \"veronica\",\n            \"email\": \"vero@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6874dba2eafeda3955e37791\",\n            \"name\": \"ihor\",\n            \"email\": \"4525@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6874de3e532566c11b2d17e6\",\n            \"name\": \"yryna\",\n            \"email\": \"45@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a30954ddbb22b2953f2d0\",\n            \"name\": \"yryna\",\n            \"email\": \"125dre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a30c7a10444a7be6a1a61\",\n            \"name\": \"yryna\",\n            \"email\": \"1midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a36b7a10444a7be6a1a66\",\n            \"name\": \"yryna\",\n            \"email\": \"133midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a3960e933b285d384cc63\",\n            \"name\": \"yryna\",\n            \"email\": \"58midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a3cab73ae6fd1d3cac7e8\",\n            \"name\": \"oliver\",\n            \"email\": \"777midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a4611dfd40d9ca7f676a7\",\n            \"name\": \"olivia\",\n            \"email\": \"7midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a47452cba0a5eda0bc2aa\",\n            \"name\": \"olivia\",\n            \"email\": \"489midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a47a42cba0a5eda0bc2af\",\n            \"name\": \"olivia\",\n            \"email\": \"9midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a48012cba0a5eda0bc2b4\",\n            \"name\": \"olivia\",\n            \"email\": \"111midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a488e2cba0a5eda0bc2b9\",\n            \"name\": \"olivia\",\n            \"email\": \"10011midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a48f12cba0a5eda0bc2be\",\n            \"name\": \"oliі\",\n            \"email\": \"07midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a494e2cba0a5eda0bc2c3\",\n            \"name\": \"olis\",\n            \"email\": \"olis8midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a49d12cba0a5eda0bc2c9\",\n            \"name\": \"olis\",\n            \"email\": \"nis8midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a4bc82cba0a5eda0bc2ce\",\n            \"name\": \"olis\",\n            \"email\": \"ns8midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a4c102cba0a5eda0bc2d3\",\n            \"name\": \"olis\",\n            \"email\": \"n2588midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a4ce82cba0a5eda0bc2d8\",\n            \"name\": \"olis\",\n            \"email\": \"n28midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a4fb52cba0a5eda0bc2dd\",\n            \"name\": \"olis\",\n            \"email\": \"n458midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a50002cba0a5eda0bc2e2\",\n            \"name\": \"ols\",\n            \"email\": \"8midre@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a53092cba0a5eda0bc2e7\",\n            \"name\": \"olha\",\n            \"email\": \"olha25@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a57731ca54354f7788f8c\",\n            \"name\": \"ihor\",\n            \"email\": \"45jhu@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687a586b3c1c2047fba4b36a\",\n            \"name\": \"vera\",\n            \"email\": \"gte125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b00cf8dbe85b48a0632bd\",\n            \"name\": \"artem\",\n            \"email\": \"artem11@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b01268dbe85b48a0632c2\",\n            \"name\": \"lydya\",\n            \"email\": \"80lid@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b01ed8dbe85b48a0632c7\",\n            \"name\": \"oleh\",\n            \"email\": \"ollid@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b0a6716ec2fb79ff0b218\",\n            \"name\": \"sveta\",\n            \"email\": \"1mko@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b0f431239dab526b0fe82\",\n            \"name\": \"tolya\",\n            \"email\": \"t18@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b10ea4000595ea64d5dba\",\n            \"name\": \"kolya\",\n            \"email\": \"tju8@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b13ebf32b9fa48577f79f\",\n            \"name\": \"petya\",\n            \"email\": \"14klo@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b14569cffb9a0895cb05f\",\n            \"name\": \"alex\",\n            \"email\": \"ak12o@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b1552ce2c0986debde425\",\n            \"name\": \"alexa\",\n            \"email\": \"akxa12o@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b28f7b18debdeae92eac2\",\n            \"name\": \"alexa\",\n            \"email\": \"akxa312o@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b29eb06de4feaaaf3afc3\",\n            \"name\": \"alexa\",\n            \"email\": \"akxa31o@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2a3b06de4feaaaf3afc9\",\n            \"name\": \"alexa\",\n            \"email\": \"ak31o@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2b4006de4feaaaf3afce\",\n            \"name\": \"alexa\",\n            \"email\": \"de5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2b60338ac8f538083d22\",\n            \"name\": \"alexa\",\n            \"email\": \"deju5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2bdb76ce87128dc15247\",\n            \"name\": \"alexa\",\n            \"email\": \"deu5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2c46434b0171ce8cce1c\",\n            \"name\": \"alexa\",\n            \"email\": \"dvgeu5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b2d7452870612013f7cfc\",\n            \"name\": \"alexey\",\n            \"email\": \"draga3@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687b56c1728d988380cf0623\",\n            \"name\": \"Lucy\",\n            \"email\": \"lucy3@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687be42239cbe354005ef034\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lucy258@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687c91ef6c1d3abe9e216e7d\",\n            \"name\": \"artem\",\n            \"email\": \"archi125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687c92346c1d3abe9e216e84\",\n            \"name\": \"artem\",\n            \"email\": \"arc125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687c958cea964e355825521e\",\n            \"name\": \"artem\",\n            \"email\": \"archytr125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dc269b16ed1d0f7913fba\",\n            \"name\": \"urtem\",\n            \"email\": \"ihytr125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dc521b16ed1d0f7913fc7\",\n            \"name\": \"urtem\",\n            \"email\": \"ih=ytr125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dc8c1b16ed1d0f7913fdb\",\n            \"name\": \"artem\",\n            \"email\": \"archyb125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dca45b16ed1d0f7913feb\",\n            \"name\": \"Lucy\",\n            \"email\": \"Draga125@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dcc50b16ed1d0f7913ffe\",\n            \"name\": \"Lucy\",\n            \"email\": \"Draga777@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dce4bb16ed1d0f7914016\",\n            \"name\": \"Lucy\",\n            \"email\": \"Draga7777@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dd0def9d73568fef35a35\",\n            \"name\": \"Lucy\",\n            \"email\": \"Draga77777@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dd1ca6e8db3ac600e50fe\",\n            \"name\": \"Lucy\",\n            \"email\": \"12577@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dd228815339c0fe45147c\",\n            \"name\": \"Lucy\",\n            \"email\": \"777@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dd565815339c0fe451489\",\n            \"name\": \"Lucy\",\n            \"email\": \"58@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dd73be25f052aa0a21c15\",\n            \"name\": \"Lucy\",\n            \"email\": \"00000@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687ddbcccdd79b21f0ff778b\",\n            \"name\": \"Lucy\",\n            \"email\": \"nvjfu52@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687ddca4a5ed958f0af35966\",\n            \"name\": \"Lucy\",\n            \"email\": \"778855@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687dde5b02ab85d93370bb08\",\n            \"name\": \"Ihor\",\n            \"email\": \"452kfgr5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"687f9ac874bc01a84d8c982c\",\n            \"name\": \"Lucy\",\n            \"email\": \"lavreha7@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68810582e04cdb0b27d87ff5\",\n            \"name\": \"Lucy\",\n            \"email\": \"lavr258@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883102ca8b376ffd099e1a0\",\n            \"name\": \"Lucy\",\n            \"email\": \"Friday@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688321cc6ba1c6f577551d6a\",\n            \"name\": \"Lucy\",\n            \"email\": \"Fri741@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68832fbb6ba1c6f577551d7a\",\n            \"name\": \"Artem\",\n            \"email\": \"Archi741@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688331ae65f491ca80894e64\",\n            \"name\": \"Artem\",\n            \"email\": \"vfrse58@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883a5d1b972f1967ffec54e\",\n            \"name\": \"Ihor\",\n            \"email\": \"Lavr258635@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883a65156c702e1bd52ae7a\",\n            \"name\": \"Ihor\",\n            \"email\": \"Lavrov12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883a727f00c4c7af96e4743\",\n            \"name\": \"Ihor\",\n            \"email\": \"trump12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883a80958db3720fbe79692\",\n            \"name\": \"Ihor\",\n            \"email\": \"gucci12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883aae3a0fe5cd3274f882b\",\n            \"name\": \"Victoria\",\n            \"email\": \"Eva25@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6883b3168344b729f151915c\",\n            \"name\": \"Victoria\",\n            \"email\": \"fada@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68849f947c7a25c9a82a41ef\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lucindsy775@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68859bdf2972faad05448d81\",\n            \"name\": \"vera\",\n            \"email\": \"kroun25@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"6885d084fe7f876acede9885\",\n            \"name\": \"vera\",\n            \"email\": \"krone25@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688c6afa1ab3305f10b9b507\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lucy7nnn75@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688cd040dee59562a7e2b05d\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lucy7ипп75@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688ceb1eea6b1b9a241007af\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lukjhпп75@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"688e63b6b9c312cd678b24a0\",\n            \"name\": \"Lucy\",\n            \"email\": \"Lukj5@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ce866ff9e29fe964437c0\",\n            \"name\": \"Olya\",\n            \"email\": \"Oldman@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689cef469f4ce1e615454e4b\",\n            \"name\": \"Olya\",\n            \"email\": \"Ophelia@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689cf02a9f4ce1e615454e56\",\n            \"name\": \"Olya\",\n            \"email\": \"Opra@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689df00aa3bdc9bc737c99bc\",\n            \"name\": \"Lina\",\n            \"email\": \"query@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689df27c6e1859dd746c374e\",\n            \"name\": \"Anton\",\n            \"email\": \"Aqua7y@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689df70c716fdb925ad30ee9\",\n            \"name\": \"Lina\",\n            \"email\": \"lina@example.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689dfc59265f6131dee5f723\",\n            \"name\": \"Alex\",\n            \"email\": \"Draga@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689dfce3d91ecc297338bb16\",\n            \"name\": \"Alex\",\n            \"email\": \"konty@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e3eca697ff841658aacbf\",\n            \"name\": \"Alexandr\",\n            \"email\": \"foget@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e40636427f7d8f4a8182d\",\n            \"name\": \"Lisa\",\n            \"email\": \"Listen5@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e418a6427f7d8f4a8183e\",\n            \"name\": \"Lisa\",\n            \"email\": \"loorit@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e99017416a52c294cd334\",\n            \"name\": \"Tony\",\n            \"email\": \"ghjut@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e9bee83ce8555fd69cfad\",\n            \"name\": \"ozzi\",\n            \"email\": \"Afgyylx@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e9c2483ce8555fd69cfb4\",\n            \"name\": \"Tony\",\n            \"email\": \"sweet@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e9da883ce8555fd69cfbf\",\n            \"name\": \"Ledy\",\n            \"email\": \"Love775@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689e9dee83ce8555fd69cfc7\",\n            \"name\": \"Ledy\",\n            \"email\": \"Victory@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb00e83ce8555fd69cfde\",\n            \"name\": \"Leon\",\n            \"email\": \"Victory2@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb03a83ce8555fd69cfe5\",\n            \"name\": \"Leony\",\n            \"email\": \"Victory52@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb23583ce8555fd69cff2\",\n            \"name\": \"Leony\",\n            \"email\": \"Victory152@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb30b83ce8555fd69cff9\",\n            \"name\": \"Leony\",\n            \"email\": \"Victory1522@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb37583ce8555fd69d000\",\n            \"name\": \"Leony\",\n            \"email\": \"3огаккуч@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb3cf83ce8555fd69d007\",\n            \"name\": \"Leony\",\n            \"email\": \"12580@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb47183ce8555fd69d00e\",\n            \"name\": \"Leony\",\n            \"email\": \"frafr@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb4f183ce8555fd69d015\",\n            \"name\": \"Leony\",\n            \"email\": \"frafr1@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689eb59d83ce8555fd69d01c\",\n            \"name\": \"Leony\",\n            \"email\": \"frafr12@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ebe0b83ce8555fd69d023\",\n            \"name\": \"Leony\",\n            \"email\": \"frafr122@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ec10d8e09b97cc506ab1f\",\n            \"name\": \"Leony\",\n            \"email\": \"5оракм@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689efc4e84c42323bd719138\",\n            \"name\": \"Leony\",\n            \"email\": \"5ор25акм@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f017edb5e16effa2ff7a6\",\n            \"name\": \"Leony\",\n            \"email\": \"swamd@gmail.com\",\n            \"accountType\": \"base\",\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f08cd47c541ed076cac6f\",\n            \"name\": \"Leony\",\n            \"email\": \"flow@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f09697010e0f8dc662e0c\",\n            \"name\": \"Leony\",\n            \"email\": \"flow1@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f0a6f7d761f6253efb182\",\n            \"name\": \"Leony\",\n            \"email\": \"example@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f14e7821bcdcad8b841f5\",\n            \"name\": \"Leony\",\n            \"email\": \"example1@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f4007901b9ee4aee1108b\",\n            \"name\": \"Leony\",\n            \"email\": \"example12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f41c81c8c9357b43f1c9a\",\n            \"name\": \"Leonyd\",\n            \"email\": \"example1231@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f4976529174e963b13840\",\n            \"name\": \"Leonyd\",\n            \"email\": \"example12313@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f4c256d05f0ca3e461f46\",\n            \"name\": \"Leonyd\",\n            \"email\": \"example1233@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f4e0b085b162b98528f8d\",\n            \"name\": \"Leonyd\",\n            \"email\": \"example12332@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f5a5699de4bb8e9dc082f\",\n            \"name\": \"Leonyd\",\n            \"email\": \"seller1@example.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f608dd3852863167631a9\",\n            \"name\": \"Seller1\",\n            \"email\": \"seller124@example.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689f7cbdcd3d657d00bc4d9e\",\n            \"name\": \"Artem\",\n            \"email\": \"artemllavreha@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ff68af4828b5098483e8c\",\n            \"name\": \"Artem\",\n            \"email\": \"artemllavreha1@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": true,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ff94faf35669097dd81f1\",\n            \"name\": \"Artem\",\n            \"email\": \"artemllavreha12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"689ffa78f983688834e0623b\",\n            \"name\": \"Artem\",\n            \"email\": \"artemllavreha123@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a006e5daa2597650d2a878\",\n            \"name\": \"Artem\",\n            \"email\": \"lavreha@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a00797daa2597650d2a881\",\n            \"name\": \"Artem\",\n            \"email\": \"lavrehaA@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a007c5daa2597650d2a88a\",\n            \"name\": \"Artem\",\n            \"email\": \"lavrehaArt@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a008e6daa2597650d2a893\",\n            \"name\": \"Oleh\",\n            \"email\": \"Oleh1@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\",\n                \"689e257d5cea365637ad3842\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a00907daa2597650d2a89e\",\n            \"name\": \"Oleh\",\n            \"email\": \"Oleh12@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a078965a43484b154d7203\",\n            \"name\": \"Olha\",\n            \"email\": \"Art@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\",\n                \"689e257d5cea365637ad3842\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a082cf96314640ea4d35ca\",\n            \"name\": \"Oleh\",\n            \"email\": \"Oleh123@gmail.com\",\n            \"accountType\": \"premium\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a0d3508058034ac729fb52\",\n            \"name\": \"Artem\",\n            \"email\": \"ArtemLavrekha@gmail.com\",\n            \"accountType\": \"premium\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\",\n                \"689e257d5cea365637ad3842\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a0fa4db4e1a9bd0d0b8a14\",\n            \"name\": \"Super Admin\",\n            \"email\": \"admin@example.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3843\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a12626c17d21c8d5c47885\",\n            \"name\": \"Artem\",\n            \"email\": \"ArtemLavrekha258@gmail.com\",\n            \"accountType\": \"premium\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a141bc79d5c6c0ce87f1f0\",\n            \"name\": \"Olha\",\n            \"email\": \"Art@gmail1.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a145213ffcefce57a9f0f0\",\n            \"name\": \"Olha\",\n            \"email\": \"Art25@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a145343ffcefce57a9f0f9\",\n            \"name\": \"Artem\",\n            \"email\": \"ArtemLavrekha1@gmail.com\",\n            \"accountType\": \"premium\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a167da823d6b9e9b1a7514\",\n            \"name\": \"Olha\",\n            \"email\": \"Art2563@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68a167ed823d6b9e9b1a751d\",\n            \"name\": \"Artem\",\n            \"email\": \"ArtemLavrekha1025@gmail.com\",\n            \"accountType\": \"premium\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68ae04729e4aaaee3de05467\",\n            \"name\": \"Olha\",\n            \"email\": \"goArt@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\",\n                \"689e257d5cea365637ad3842\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68ae05df9e4aaaee3de05499\",\n            \"name\": \"Olha\",\n            \"email\": \"goArt23@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68ae06129e4aaaee3de054a2\",\n            \"name\": \"Olha\",\n            \"email\": \"goArt231@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3841\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68aed166505ee45294912b20\",\n            \"name\": \"Olha\",\n            \"email\": \"Art25653@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68aeda0c505ee45294912b2f\",\n            \"name\": \"Olha\",\n            \"email\": \"Art2564753@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68aeda45505ee45294912b38\",\n            \"name\": \"Olha\",\n            \"email\": \"Art164753@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        },\n        {\n            \"_id\": \"68aedbb4505ee45294912b43\",\n            \"name\": \"Olha\",\n            \"email\": \"Art002@gmail.com\",\n            \"accountType\": \"base\",\n            \"roles\": [\n                \"689e257d5cea365637ad3840\"\n            ],\n            \"avatar\": null,\n            \"isDeleted\": false,\n            \"isVerified\": false\n        }\n    ],\n    \"total\": 146,\n    \"limit\": 10,\n    \"page\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Admin] Assign manager",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"68a008e6daa2597650d2a893\",\n  \"roleName\": \"manager\"\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/users/assign",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "users",
+                "assign"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Admin] POST /users/assign",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"68a008e6daa2597650d2a893\",\n  \"roleName\": \"manager\"\n}"
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/users/assign",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "users",
+                    "assign"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "940"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3ac-cyR5cHNHxeUg2p8bPGz89E5HjSU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 18:50:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Role manager assigned successfully\",\n    \"user\": {\n        \"_id\": \"68a008e6daa2597650d2a893\",\n        \"name\": \"Oleh\",\n        \"email\": \"Oleh1@gmail.com\",\n        \"age\": 35,\n        \"roles\": [\n            {\n                \"_id\": \"689e257d5cea365637ad3841\",\n                \"name\": \"seller\",\n                \"createdAt\": \"2025-08-14T18:05:50.405Z\",\n                \"permissions\": [\n                    \"68a0f7835cea365637ad4f96\",\n                    \"68a0f7835cea365637ad4f97\",\n                    \"68a0f7835cea365637ad4f95\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-28T18:47:16.551Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            },\n            {\n                \"_id\": \"689e257d5cea365637ad3842\",\n                \"name\": \"manager\",\n                \"createdAt\": \"2025-08-14T18:05:50.456Z\",\n                \"permissions\": [\n                    \"68a0f7845cea365637ad4f99\",\n                    \"68a0f7835cea365637ad4f98\",\n                    \"68a0f7845cea365637ad4f9f\",\n                    \"68a0f7845cea365637ad4f9d\",\n                    \"68a0f7835cea365637ad4f95\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-28T18:47:16.647Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            }\n        ],\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"organizationId\": null,\n        \"accountType\": \"base\",\n        \"createdAt\": \"2025-08-16T04:28:22.149Z\",\n        \"updatedAt\": \"2025-08-28T18:50:30.470Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Admin, Manager] Ban user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isBanned\": \"false\"\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/users/ban/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "users",
+                "ban",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Admin, Manager] PATCH/users/ban/:userId",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isBanned\": \"true\"\n}"
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/users/ban/68a07ce6217d246963574db5",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "users",
+                    "ban",
+                    "68a07ce6217d246963574db5"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 18:53:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "[Admin]  Delete user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"68a078965a43484b154d7203\",\n  \"roleName\": \"manager\"\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/users/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Admin] DELETE /users/:userId",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"68a078965a43484b154d7203\",\n  \"roleName\": \"manager\"\n}"
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/users/68a07ce6217d246963574db5",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "users",
+                    "68a07ce6217d246963574db5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "60"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c-7kyTqv9Tlgn23mwg3oStmO5OWLM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 18:56:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"User 6873b8900016fd6d1e25fd26 has been deleted\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cars",
+      "item": [
+        {
+          "name": "[Buyer, Seller, Manager,Admin] Get cars",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/cars?region=Lviv",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars"
+              ],
+              "query": [
+                {
+                  "key": "brand",
+                  "value": "Volvo",
+                  "disabled": true
+                },
+                {
+                  "key": "adStatus",
+                  "value": "pending",
+                  "disabled": true
+                },
+                {
+                  "key": "region",
+                  "value": "Lviv"
+                },
+                {
+                  "key": "title",
+                  "value": "Updated Car Title",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Buyer, Seller, Manager,Admin] GET /cars",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  }
+                ],
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/cars?region=Lviv",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "cars"
+                  ],
+                  "query": [
+                    {
+                      "key": "brand",
+                      "value": "Volvo",
+                      "disabled": true
+                    },
+                    {
+                      "key": "adStatus",
+                      "value": "pending",
+                      "disabled": true
+                    },
+                    {
+                      "key": "region",
+                      "value": "Lviv"
+                    },
+                    {
+                      "key": "title",
+                      "value": "Updated Car Title",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2971"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"b9b-O7eQVzJXWu50G1t9UUjTDvwXdA8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 18:58:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"_id\": \"68a07ce6217d246963574db5\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:43:18.580Z\",\n        \"updatedAt\": \"2025-08-16T12:43:18.580Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68a07cde217d246963574dac\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:43:10.450Z\",\n        \"updatedAt\": \"2025-08-16T12:43:10.450Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68a07a7fde8775da431e76bf\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:33:03.668Z\",\n        \"updatedAt\": \"2025-08-16T12:33:03.668Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68a07a375a43484b154d7247\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:31:51.271Z\",\n        \"updatedAt\": \"2025-08-16T12:31:51.271Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68a07a035a43484b154d7233\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:30:59.597Z\",\n        \"updatedAt\": \"2025-08-16T12:30:59.597Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"68a073b3da4943944106c661\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 35000,\n        \"priceUAH\": 1456000,\n        \"priceUSD\": 35000,\n        \"priceEUR\": 29928.057553956834,\n        \"priceRate\": 41.6,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 0,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:04:03.691Z\",\n        \"updatedAt\": \"2025-08-16T12:04:03.691Z\",\n        \"__v\": 0\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "[Buyer, Seller] Get cars by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sellerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/cars/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Buyer, Seller] GET /cars/:id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  }
+                ],
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/cars/68a07ce6217d246963574db5",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "cars",
+                    "68a07ce6217d246963574db5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "494"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ee-g/P1e1ud1mizm+aW8rFwzoQFC+I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:10:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": \"68a07ce6217d246963574db5\",\n    \"title\": \"Toyota Corolla\",\n    \"description\": \"A very clean car in excellent condition.\",\n    \"brand\": \"Toyota\",\n    \"model\": [\n        \"Corolla\"\n    ],\n    \"sellerId\": \"68a00907daa2597650d2a89e\",\n    \"currency\": \"USD\",\n    \"price\": 35000,\n    \"priceUAH\": 1456000,\n    \"priceUSD\": 35000,\n    \"priceEUR\": 29928.057553956834,\n    \"priceRate\": 41.6,\n    \"adStatus\": \"active\",\n    \"hasProfanity\": false,\n    \"profaneWords\": [],\n    \"editAttempts\": 0,\n    \"region\": \"Lviv\",\n    \"views\": [],\n    \"createdAt\": \"2025-08-16T12:43:18.580Z\",\n    \"updatedAt\": \"2025-08-16T12:43:18.580Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Buyer, Seller, Manager,Admin] Get stats by id",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sellerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/cars/stats/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "stats",
+                "{{id}}"
+              ],
+              "query": [
+                {
+                  "key": "brand",
+                  "value": "Toyota",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Buyer, Seller, Manager,Admin] GET /cars/stats/:id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  }
+                ],
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/cars/stats/68a07ce6217d246963574db5",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "cars",
+                    "stats",
+                    "68a07ce6217d246963574db5"
+                  ],
+                  "query": [
+                    {
+                      "key": "brand",
+                      "value": "Toyota",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "128"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"80-0Cn2wJsnt0/7TjKH8DiyXwpALXM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:08:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"totalViews\": 0,\n    \"viewsToday\": 0,\n    \"viewsWeek\": 0,\n    \"viewsMonth\": 0,\n    \"avgPriceRegion\": 31833.333333333332,\n    \"avgPriceUA\": 27882.352941176472\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Seller,Manager,Admin] Car create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\n    {\n  \"title\": \"Toyota Camry 40 \",\n  \"description\": \"A very clean car in excellent condition.\",\n  \"brand\": \"Toyota\",\n  \"model\": \"Camry\",\n  \"make\": \"Toyota\",\n  \"year\": 2008,\n  \"mileage\": 355000,\n  \"currency\": \"USD\",\n  \"price\": 12000,\n  \"priceInUAH\": 600000,\n  \"exchangeRate\": 40,\n  \"region\":\"Cherkassy\"\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/cars/create",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Seller,Manager,Admin] POST /cars/create",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\n    {\n  \"title\": \"Renault \",\n  \"description\": \"A very clean car in excellent condition.\",\n  \"brand\": \"Renault\",\n  \"model\": \"Duster\",\n  \"make\": \"Renault\",\n  \"year\": 2020,\n  \"mileage\": 95000,\n  \"currency\": \"USD\",\n  \"price\": 16000,\n  \"priceInUAH\": 652800,\n  \"exchangeRate\": 40,\n  \"region\":\"Cherkassy\"\n}"
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/cars/create",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "cars",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "494"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ee-FvSOVIsVN7PKEhId1zEwCWFmwqs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:13:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"title\": \"Renault \",\n    \"description\": \"A very clean car in excellent condition.\",\n    \"brand\": \"Renault\",\n    \"model\": [\n        \"Duster\"\n    ],\n    \"sellerId\": \"68b0a7c6f64cd65d37d504b6\",\n    \"currency\": \"USD\",\n    \"price\": 16000,\n    \"priceUAH\": 664000,\n    \"priceUSD\": 16000,\n    \"priceEUR\": 13690.721649484536,\n    \"priceRate\": 41.5,\n    \"adStatus\": \"inactive\",\n    \"hasProfanity\": false,\n    \"profaneWords\": [],\n    \"editAttempts\": 0,\n    \"region\": \"Cherkassy\",\n    \"_id\": \"68b0aa77f64cd65d37d504e9\",\n    \"views\": [],\n    \"createdAt\": \"2025-08-28T19:13:59.721Z\",\n    \"updatedAt\": \"2025-08-28T19:13:59.721Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Seller] Car edit",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sellerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Car Title\",\n  \"price\": 16000,\n  \"region\":\"Lviv\",\n \"model\": [\"Camry \" ]\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/cars/edit/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "edit",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Seller] PUT /cars/edit/:id",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer "
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \n  \"price\": 19000\n  \n \n}"
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/cars/edit/68a07ce6217d246963574db5",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "cars",
+                    "edit",
+                    "68a07ce6217d246963574db5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "493"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ed-/DlBZFNojTYbedx4pfnxANfzbxI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:15:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": \"68a07ce6217d246963574db5\",\n    \"title\": \"Toyota Corolla\",\n    \"description\": \"A very clean car in excellent condition.\",\n    \"brand\": \"Toyota\",\n    \"model\": [\n        \"Corolla\"\n    ],\n    \"sellerId\": \"68a00907daa2597650d2a89e\",\n    \"currency\": \"USD\",\n    \"price\": 19000,\n    \"priceUAH\": 788500,\n    \"priceUSD\": 19000,\n    \"priceEUR\": 16257.731958762886,\n    \"priceRate\": 41.5,\n    \"adStatus\": \"active\",\n    \"hasProfanity\": false,\n    \"profaneWords\": [],\n    \"editAttempts\": 1,\n    \"region\": \"Lviv\",\n    \"views\": [],\n    \"createdAt\": \"2025-08-16T12:43:18.580Z\",\n    \"updatedAt\": \"2025-08-28T19:15:17.025Z\",\n    \"__v\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Admin] Update prices",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/cars/update-prices",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "update-prices"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Admin] PATCH /cars/update-prices",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{API_HOST}}/cars/update-prices",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "cars",
+                    "update-prices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"29-kYSj4VAkxdqjS+EBljrRMsyFEME\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:16:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Prices updated successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Manager/Admin] Car delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_HOST}}/cars/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Manager/Admin] DELETE /cars/:id",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_HOST}}/cars/{{id}}",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "cars",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-1E/kfyZ586NnqUEXgTN4oHmqRNg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:19:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Car deleted\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Manager/Admin] Car verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/cars/verify-car/{{id}}",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "cars",
+                "verify-car",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Manager/Admin] POST /cars/verify-car/:carId",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{API_HOST}}/cars/verify-car/{{id}}",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "cars",
+                    "verify-car",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "526"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"20e-WiO01aTY+u4J8gh87Sj0j55c4q8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:18:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Car verified\",\n    \"car\": {\n        \"_id\": \"68a07ce6217d246963574db5\",\n        \"title\": \"Toyota Corolla\",\n        \"description\": \"A very clean car in excellent condition.\",\n        \"brand\": \"Toyota\",\n        \"model\": [\n            \"Corolla\"\n        ],\n        \"sellerId\": \"68a00907daa2597650d2a89e\",\n        \"currency\": \"USD\",\n        \"price\": 19000,\n        \"priceUAH\": 788500,\n        \"priceUSD\": 19000,\n        \"priceEUR\": 16257.731958762886,\n        \"priceRate\": 41.5,\n        \"adStatus\": \"active\",\n        \"hasProfanity\": false,\n        \"profaneWords\": [],\n        \"editAttempts\": 1,\n        \"region\": \"Lviv\",\n        \"views\": [],\n        \"createdAt\": \"2025-08-16T12:43:18.580Z\",\n        \"updatedAt\": \"2025-08-28T19:18:09.971Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Brands",
+      "item": [
+        {
+          "name": "[Seller, Manager,Admin] Get brands",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{API_HOST}}/brands",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "brands"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Seller, Manager,Admin] GET /brands",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{adminToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{API_HOST}}/brands",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "brands"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1764"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6e4-gO12jTZlId6zB8lzSDOO6ElD8f8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:20:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"_id\": \"689edacf06e5e272a2276cd1\",\n        \"name\": \"Audi\",\n        \"models\": [\n            \"A3\",\n            \"A4\",\n            \"A6\",\n            \"Q5\",\n            \"Q7\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd2\",\n        \"name\": \"BMW\",\n        \"models\": [\n            \"3 Series\",\n            \"5 Series\",\n            \"X3\",\n            \"X5\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd3\",\n        \"name\": \"Chevrolet\",\n        \"models\": [\n            \"Aveo\",\n            \"Cruze\",\n            \"Captiva\",\n            \"Tahoe\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd4\",\n        \"name\": \"Ford\",\n        \"models\": [\n            \"Fiesta\",\n            \"Focus\",\n            \"Mondeo\",\n            \"Kuga\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd5\",\n        \"name\": \"Honda\",\n        \"models\": [\n            \"Civic\",\n            \"Accord\",\n            \"CR-V\",\n            \"HR-V\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd6\",\n        \"name\": \"Hyundai\",\n        \"models\": [\n            \"Elantra\",\n            \"Tucson\",\n            \"Santa Fe\",\n            \"Sonata\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd7\",\n        \"name\": \"Kia\",\n        \"models\": [\n            \"Rio\",\n            \"Sportage\",\n            \"Sorento\",\n            \"Ceed\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd8\",\n        \"name\": \"Mazda\",\n        \"models\": [\n            \"Mazda 3\",\n            \"Mazda 6\",\n            \"CX-5\",\n            \"CX-9\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cd9\",\n        \"name\": \"Mercedes-Benz\",\n        \"models\": [\n            \"A-Class\",\n            \"C-Class\",\n            \"E-Class\",\n            \"GLC\",\n            \"GLE\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cda\",\n        \"name\": \"Nissan\",\n        \"models\": [\n            \"Micra\",\n            \"Qashqai\",\n            \"X-Trail\",\n            \"Navara\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cdb\",\n        \"name\": \"Opel\",\n        \"models\": [\n            \"Astra\",\n            \"Corsa\",\n            \"Insignia\",\n            \"Mokka\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cdc\",\n        \"name\": \"Peugeot\",\n        \"models\": [\n            \"208\",\n            \"308\",\n            \"3008\",\n            \"5008\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cdd\",\n        \"name\": \"Renault\",\n        \"models\": [\n            \"Clio\",\n            \"Megane\",\n            \"Captur\",\n            \"Kadjar\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cde\",\n        \"name\": \"Skoda\",\n        \"models\": [\n            \"Fabia\",\n            \"Octavia\",\n            \"Superb\",\n            \"Kodiaq\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276cdf\",\n        \"name\": \"Toyota\",\n        \"models\": [\n            \"Corolla\",\n            \"Camry\",\n            \"RAV4\",\n            \"Land Cruiser\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276ce0\",\n        \"name\": \"Volkswagen\",\n        \"models\": [\n            \"Golf\",\n            \"Passat\",\n            \"Tiguan\",\n            \"Touareg\"\n        ],\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689edacf06e5e272a2276ce1\",\n        \"name\": \"Volvo\",\n        \"models\": [\n            \"S60\",\n            \"S90\",\n            \"XC60\",\n            \"XC90\"\n        ],\n        \"__v\": 0\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "[Seller] Brand suggest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sellerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Audi\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_HOST}}/brands/suggest",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "brands",
+                "suggest"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Seller] POST /brands/suggest",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{sellerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audi\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_HOST}}/brands/suggest",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "brands",
+                    "suggest"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"35-G5wkkhYFKd3tDHVS7+rQh1afixM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:22:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Brand \\\"Audi\\\" suggestion sent to admin\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
