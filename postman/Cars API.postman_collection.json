@@ -17,18 +17,18 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "\r",
                   "const body = pm.response.json();\r",
-                  "const accessToken = body.tokens.accessToken;\r",
-                  "const refreshToken = body.tokens.refreshToken;\r",
                   "\r",
+                  "const accessToken = body.accessToken;\r",
+                  "const refreshToken = body.refreshToken;\r",
                   "\r",
                   "pm.environment.set(\"sellerToken\", accessToken);\r",
                   "\r",
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -37,7 +37,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Olexandr\",\n  \"age\": 35,\n  \"email\": \"Alex2563@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"premium\"\n  \n}",
+              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user5@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"premium\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -169,15 +169,15 @@
               "script": {
                 "exec": [
                   "const body = pm.response.json();\r",
-                  "const accessToken = body.tokens.accessToken;\r",
-                  "const refreshToken = body.tokens.refreshToken;\r",
                   "\r",
+                  "const accessToken = body.accessToken;\r",
+                  "const refreshToken = body.refreshToken;\r",
                   "\r",
-                  "pm.environment.set(\"adminToken\", accessToken);\r",
-                  ""
+                  "pm.environment.set(\"adminToken\", accessToken);"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -192,7 +192,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n   \"email\": \"admin@example.com\",\n  \"password\": \"SuperSecurePassword123\"\n  \n}",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Password123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -339,7 +339,20 @@
       "item": [
         {
           "name": "[Admin] Get users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -347,6 +360,15 @@
                 "value": "Bearer {{adminToken}}"
               }
             ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{API_HOST}}/users",
               "host": [
@@ -430,11 +452,22 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -448,7 +481,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"userId\": \"68a008e6daa2597650d2a893\",\n  \"roleName\": \"manager\"\n}"
+              "raw": "{\n  \"userId\": \"6a0339287789dd548e549e0e\",\n  \"roleName\": \"manager\"\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/users/assign",
@@ -543,7 +576,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -561,7 +595,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"isBanned\": \"false\"\n}"
+              "raw": "{\n  \"isBanned\": \"true\"\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/users/ban/{{id}}",
@@ -646,7 +680,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -664,7 +699,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"userId\": \"68a078965a43484b154d7203\",\n  \"roleName\": \"manager\"\n}"
+              "raw": ""
             },
             "url": {
               "raw": "{{API_HOST}}/users/{{id}}",
@@ -756,9 +791,19 @@
       "item": [
         {
           "name": "[Buyer, Seller, Manager,Admin] Get cars",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "GET",
             "header": [
@@ -767,8 +812,12 @@
                 "value": "Bearer {{adminToken}}"
               }
             ],
+            "body": {
+              "mode": "file",
+              "file": {}
+            },
             "url": {
-              "raw": "{{API_HOST}}/cars?region=Lviv",
+              "raw": "{{API_HOST}}/cars",
               "host": [
                 "{{API_HOST}}"
               ],
@@ -788,7 +837,8 @@
                 },
                 {
                   "key": "region",
-                  "value": "Lviv"
+                  "value": "Cherkassy",
+                  "disabled": true
                 },
                 {
                   "key": "title",
@@ -885,6 +935,16 @@
         {
           "name": "[Buyer, Seller] Get cars by id",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -900,6 +960,14 @@
               "path": [
                 "cars",
                 "{{id}}"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
               ]
             }
           },
@@ -971,7 +1039,14 @@
           "name": "[Buyer, Seller, Manager,Admin] Get stats by id",
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
             },
             "method": "GET",
             "header": [
@@ -1074,6 +1149,16 @@
         {
           "name": "[Seller,Manager,Admin] Car create",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -1087,7 +1172,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\n    {\n  \"title\": \"Toyota Camry 40 \",\n  \"description\": \"A very clean car in excellent condition.\",\n  \"brand\": \"Toyota\",\n  \"model\": \"Camry\",\n  \"make\": \"Toyota\",\n  \"year\": 2008,\n  \"mileage\": 355000,\n  \"currency\": \"USD\",\n  \"price\": 12000,\n  \"priceInUAH\": 600000,\n  \"exchangeRate\": 40,\n  \"region\":\"Cherkassy\"\n}"
+              "raw": "\n   {\n  \"title\": \"BMW X5\",\n  \"description\": \"Cool clean car\",\n  \"brand\": \"BMW\",\n  \"model\": \"X5\",\n  \"currency\": \"USD\",\n  \"price\": 15000,\n  \"priceUSD\": 15000,\n  \"priceRate\": 40,\n  \"region\": \"Lviv\"\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/cars/create",
@@ -1175,6 +1260,16 @@
         {
           "name": "[Seller] Car edit",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "PUT",
             "header": [
               {
@@ -1188,7 +1283,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Updated Car Title\",\n  \"price\": 16000,\n  \"region\":\"Lviv\",\n \"model\": [\"Camry \" ]\n}"
+              "raw": "{\n  \"title\": \"Updated Car Title fool\",\n  \"price\": 16000,\n  \"region\":\"Lviv\",\n \"model\": [\"Camry\"]\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/cars/edit/{{id}}",
@@ -1278,6 +1373,16 @@
         {
           "name": "[Admin] Update prices",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "PATCH",
             "header": [
               {
@@ -1375,6 +1480,16 @@
         {
           "name": "[Manager/Admin] Car delete",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "DELETE",
             "header": [
               {
@@ -1474,6 +1589,16 @@
         {
           "name": "[Manager/Admin] Car verify",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -1561,7 +1686,20 @@
       "item": [
         {
           "name": "[Seller, Manager,Admin] Get brands",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -1570,6 +1708,15 @@
                 "type": "text"
               }
             ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{API_HOST}}/brands",
               "host": [
@@ -1643,6 +1790,16 @@
         {
           "name": "[Seller] Brand suggest",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -1653,7 +1810,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"name\": \"Audi\"\r\n}",
+              "raw": "{\r\n  \"name\": \"bugatti\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
