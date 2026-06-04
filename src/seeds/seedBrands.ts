@@ -1,10 +1,11 @@
-import {Brand} from '../models/brand.model';
-
+import { Brand } from '../models/brand.model';
+import { CarModel } from '../models/car-model.model';
 
 export const seedBrandsWithModels = async () => {
     try {
 
-           await Brand.deleteMany({});
+        await Brand.deleteMany({});
+        await CarModel.deleteMany({});
 
         const brandsWithModels = [
             {
@@ -75,19 +76,29 @@ export const seedBrandsWithModels = async () => {
                 name: 'Volvo',
                 models: ['S60', 'S90', 'XC60', 'XC90']
             }
-];
+        ];
 
-        for (const brand of brandsWithModels) {
-            await Brand.findOneAndUpdate(
-                { name: brand.name },
-                { name: brand.name, models: brand.models },
-                { upsert: true, new: true }
-            );
+        for (const brandData of brandsWithModels) {
+
+            const brand = await Brand.create({ name: brandData.name });
+
+
+            const modelsToInsert = brandData.models.map(modelName => {
+                return {
+                    name: modelName,
+                    brandId: brand._id
+                };
+            });
+
+
+            if (modelsToInsert.length > 0) {
+                await CarModel.insertMany(modelsToInsert);
+            }
         }
-    console.log('Brands and models are seeded');
+
+        console.log('Brands and models are successfully seeded!');
 
     } catch (error) {
-        console.error(' Seed error:', error);
+        console.error('Seed error:', error);
     }
-
 };

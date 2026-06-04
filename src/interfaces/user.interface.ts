@@ -19,6 +19,7 @@ export  interface IUser {
     accountType: AccountType;
     isVerified:boolean;
     isDeleted:boolean;
+    isBanned: boolean;
     phone?:string;
     avatar?: string;
     createdAt?: Date;

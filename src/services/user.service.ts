@@ -8,6 +8,7 @@ import {passwordService} from './password.service';
 import {UploadedFile} from 'express-fileupload';
 import {s3Service} from './s3.service';
 import {FileItemTypeEnum} from '../enums/file-item-type.enum';
+import {AccountType} from "../enums/account-type.enum";
 
 class UserService {
     public async getList(query: IUserListQuery): Promise<IUserListResponse> {
@@ -114,10 +115,30 @@ class UserService {
 
     public async toggleBanUser(userId: string, isBanned: boolean): Promise<IUserResponse> {
         const objectId = new Types.ObjectId(userId);
-        const updatedUser = await userRepository.update(objectId, {isDeleted: isBanned});
+
+        const updatedUser = await userRepository.update(objectId, { isBanned });
+
         if (!updatedUser) throw new ApiError('User not found', 404);
 
         return userPresenter.toPublicResDto(updatedUser);
+    }
+    public async upgradeToPremium(userId: string | Types.ObjectId) {
+        const objectId = new Types.ObjectId(userId);
+
+
+        const user = await userRepository.findById(objectId);
+
+        if (!user) {
+            throw new ApiError('User not found', 404);
+        }
+
+        if (user.accountType === AccountType.PREMIUM) {
+            throw new ApiError('You already have a Premium account', 400);
+        }
+
+
+        const updatedUser = await userRepository.update(objectId, { accountType: AccountType.PREMIUM });
+        return updatedUser;
     }
 }
 

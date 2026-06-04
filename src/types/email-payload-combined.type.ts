@@ -5,6 +5,7 @@ export type EmailPayloadCombined = {
     actionToken?: string;
     verifyLink?: string;
     brandName: string;
+    modelName?: string;
     userName: string;
     userEmail: string;
     carId: string;

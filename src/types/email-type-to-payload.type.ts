@@ -10,4 +10,6 @@ export type EmailTypeToPayload = {
     [EmailTypeEnum.BRAND_SUGGESTION]: PickRequired<EmailPayloadCombined, 'brandName'| 'userName'| 'userEmail'>;
 
     [EmailTypeEnum.CAR_MODERATION]: PickRequired<EmailPayloadCombined, 'carId'| 'carTitle'| 'sellerName'| 'sellerEmail' | 'reason'| 'adStatus'>;
+
+    [EmailTypeEnum.MODEL_SUGGESTION]: PickRequired<EmailPayloadCombined, 'brandName' | 'modelName' | 'userName' | 'userEmail'>;
        };

@@ -85,6 +85,21 @@ export class EmailService {
         );
         console.log(`Brand suggestion email sent for "${brandName}"`);
     }
+    public async sendModelSuggestionEmail(brandName: string, modelName: string, user: { name: string; email: string }): Promise<void> {
+        await this.sendMail(
+
+            EmailTypeEnum.MODEL_SUGGESTION,
+            configs.SMTP_MANAGER_EMAIL,
+            {
+                brandName,
+                modelName,
+                userName: user.name,
+                userEmail: user.email
+            }
+        );
+        console.log(`Model suggestion email sent for "${modelName} "`);
+    }
+
 }
 export const emailService = new EmailService();
 

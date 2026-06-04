@@ -12,7 +12,8 @@ class CarController {
             const user = req.user as IUser;
             const car = await carService.createCar(user, req.body);
 
-            if (req.body.hasProfanity) {
+
+            if (car.hasProfanity) {
                 console.warn(`[Moderation Warning] Car ad created by ${user.email} flagged for profanity. Email sent to manager.`);
                 await emailService.sendCarModerationEmail(
                     car,

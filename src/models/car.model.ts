@@ -1,8 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { CurrencyEnum } from '../enums/currency.enum';
 import { AdStatusEnum } from '../enums/ad-status.enum';
-import {ICar} from '../interfaces/car.interface';
-
+import { ICar } from '../interfaces/car.interface';
 
 const CarSchema = new Schema<ICar>(
     {
@@ -11,7 +10,6 @@ const CarSchema = new Schema<ICar>(
             required: true,
             minlength: 3,
             maxlength: 100,
-
         },
         description: {
             type: String,
@@ -19,8 +17,11 @@ const CarSchema = new Schema<ICar>(
             minlength: 10,
             maxlength: 2000,
         },
-        brand: { type: String, required: true },
-        model: [{ type: String, required: true }],
+
+
+        brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
+        model: { type: Schema.Types.ObjectId, ref: 'CarModel', required: true },
+
         sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         currency: {
             type: String,
@@ -46,6 +47,7 @@ const CarSchema = new Schema<ICar>(
     },
     { timestamps: true }
 );
+
 
 // CarSchema.pre('save', function (next) {
 //     const car = this as ICar;

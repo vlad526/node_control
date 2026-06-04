@@ -33,12 +33,21 @@ class AuthService {
 
         let rolesToAssign: IRole[] = [];
         if (dto.roles && dto.roles.length > 0) {
-            rolesToAssign = await Role.find({ name: { $in: dto.roles } });
-            if (rolesToAssign.length !== dto.roles.length)
-                throw new Error('One or more roles not found');
+            const allowedRoles = ['buyer', 'seller'];
+            const requestedRoles = dto.roles.filter(role => allowedRoles.includes(role as string));
+
+            if (requestedRoles.length === 0) {
+                throw new ApiError('Invalid roles provided for registration', 400);
+            }
+
+            rolesToAssign = await Role.find({ name: { $in: requestedRoles } });
+
+            if (rolesToAssign.length !== requestedRoles.length) {
+                throw new ApiError('One or more requested roles not found in DB', 400);
+            }
         } else {
             const defaultRole = await Role.findOne({ name: 'buyer' });
-            if (!defaultRole) throw new Error('Default role buyer not found');
+            if (!defaultRole) throw new ApiError('Default role buyer not found', 500);
             rolesToAssign = [defaultRole];
         }
 
@@ -97,6 +106,9 @@ class AuthService {
         const user = await userRepository.findByEmail(dto.email);
         if (!user) {
             throw new ApiError('User not found', 404);
+        }
+        if (user.isBanned) {
+            throw new ApiError('Your account has been banned', 403);
         }
         const isPasswordCorrect = await passwordService.comparePassword(
             dto.password,

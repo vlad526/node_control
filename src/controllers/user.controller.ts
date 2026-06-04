@@ -1,6 +1,8 @@
 import {NextFunction, Request, Response} from 'express';
 import {userRepository} from '../repositories/user.repository';
 import {Types} from 'mongoose';
+import {userService} from "../services/user.service";
+import {IUser} from "../interfaces/user.interface";
 
 
 class UserController {
@@ -55,6 +57,21 @@ class UserController {
             next(e);
         }
 
+    }
+
+    public async upgradeToPremium(req: Request, res: Response, next: NextFunction) {
+        try {
+            const user = req.user as IUser;
+
+            const updatedUser = await userService.upgradeToPremium(user._id);
+
+            res.status(200).json({
+                message: 'Successfully upgraded to Premium!',
+                user: updatedUser
+            });
+        } catch (e) {
+            next(e);
+        }
     }
    }
 

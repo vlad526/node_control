@@ -3,6 +3,7 @@ import {IUser} from '../interfaces/user.interface';
 import {ApiError} from '../errors/api-error';
 import {AccountType} from '../enums/account-type.enum';
 import {createSchema, updateSchema} from '../validators/car.validator';
+import {AdStatusEnum} from "../enums/ad-status.enum";
 
 
 export class CarMiddleware {
@@ -32,7 +33,7 @@ export class CarMiddleware {
             const user = req.user as IUser;
             if (!user) throw new ApiError('Unauthorized', 401);
             if (user.accountType !== AccountType.PREMIUM) {
-                req.query.adStatus = 'ACTIVE';
+                req.query.adStatus = AdStatusEnum.ACTIVE;
             }
             next();
         } catch (err) {

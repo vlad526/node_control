@@ -7,8 +7,8 @@ export interface ICar {
     _id?: ObjectId;
     title: string;
     description?: string;
-    brand: string;
-    model: string[];
+    brand: ObjectId | string;
+    model: ObjectId | string;
     sellerId: ObjectId;
     currency: CurrencyEnum;
     price: number;

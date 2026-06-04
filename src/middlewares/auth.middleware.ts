@@ -30,6 +30,9 @@ class AuthMiddleware {
             if (!user) {
                 throw new ApiError('User not found', 404);
             }
+            if (user.isBanned) {
+                throw new ApiError('Your account has been banned', 403);
+            }
             req.user = user;
             console.log(payload);
             res.locals.jwtPayload = payload;

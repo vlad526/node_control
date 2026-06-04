@@ -16,6 +16,10 @@ const UserSchema = new Schema({
         },
         isVerified: {type: Boolean, default: false},
         isDeleted: {type: Boolean, default: false},
+        isBanned: {
+            type: Boolean,
+            default: false,
+        },
         organizationId: {
             type: Schema.Types.ObjectId,
             ref: 'Organization',

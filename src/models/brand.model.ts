@@ -4,6 +4,7 @@ import {IBrand} from '../interfaces/brand.interface';
 
 const BrandSchema = new Schema<IBrand>({
     name: { type: String, required: true, unique: true },
+    models: [{ type: String }]
 }, {
     timestamps: true,
 });

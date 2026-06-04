@@ -11,9 +11,15 @@ router.get('/',
 
 
 router.post(
-    '/suggest',
+    '/suggest/brand',
     authMiddleware.checkAccessToken,
     requirePermissionMiddleware('create_car'),
     brandController.suggestBrand
+);
+router.post(
+    '/suggest/model',
+    authMiddleware.checkAccessToken,
+    requirePermissionMiddleware('create_car'),
+    brandController.suggestModel
 );
 export const brandRoutes = router;
