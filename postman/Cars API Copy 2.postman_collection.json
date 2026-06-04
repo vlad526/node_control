@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "adf9660d-9d55-45b7-a2e7-9ce48ba0e1c2",
-    "name": "Cars API",
+    "_postman_id": "17e33f32-7f7e-489a-9649-4ed8c37bb933",
+    "name": "Cars API Copy 2",
     "description": "Колекція API для тестування ролей Buyer, Seller, Manager, Admin",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "42792831"
@@ -37,7 +37,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user5@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"premium\"\n}",
+              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user10@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"base\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -331,6 +331,38 @@
               "body": "{\n    \"user\": {\n        \"_id\": \"68a0fa4db4e1a9bd0d0b8a14\",\n        \"name\": \"Super Admin\",\n        \"email\": \"admin@example.com\",\n        \"password\": \"$2b$10$.c93f/k/9RsumJGRR4Ovi.oQ1TKXRVp.FZhBuX0z61kezwkd.ORA6\",\n        \"age\": 30,\n        \"roles\": [\n            {\n                \"_id\": \"689e257d5cea365637ad3843\",\n                \"name\": \"admin\",\n                \"createdAt\": \"2025-08-14T18:05:50.508Z\",\n                \"permissions\": [\n                    \"68a0f7835cea365637ad4f94\",\n                    \"68a0f7845cea365637ad4f99\",\n                    \"68a0f7835cea365637ad4f96\",\n                    \"68a0f7845cea365637ad4f9e\",\n                    \"68a0f7835cea365637ad4f98\",\n                    \"68a0f7845cea365637ad4f9c\",\n                    \"68a0f7835cea365637ad4f97\",\n                    \"68a0f7845cea365637ad4f9f\",\n                    \"68a0f7845cea365637ad4f9a\",\n                    \"68a0f7845cea365637ad4f9d\",\n                    \"68a0f7835cea365637ad4f95\",\n                    \"68a0f7845cea365637ad4f9b\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-27T09:35:28.310Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            }\n        ],\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"organizationId\": null,\n        \"accountType\": \"base\",\n        \"createdAt\": \"2025-08-16T21:38:21.829Z\",\n        \"updatedAt\": \"2025-08-16T21:38:21.829Z\"\n    },\n    \"tokens\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTYyOTIxMDR9.Q7gRzKBBfDDzzkXLzKzayt_mmYSTGpyfN2mY5J_Qz_4\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTY1NDk1MDR9.gJo9k5JR4r_Y7qES1stRG_RwnOKtAhl4ghLZmPIzUrU\"\n    }\n}"
             }
           ]
+        },
+        {
+          "name": "/ Premium",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"login\":\"admin@gmail.com\",\r\n    \"password\":\"admin\"\r\n         \r\n    // \"login\":\"Snoop@gmail.com\",\r\n    // \"password\":\"Snoop_d@@g1\"\r\n    \r\n}"
+            },
+            "url": {
+              "raw": "{{API_HOST}}/auth/premium",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "auth",
+                "premium"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -582,6 +614,16 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{adminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "PATCH",
             "header": [
               {
@@ -1172,7 +1214,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "\n   {\n  \"title\": \"BMW X5\",\n  \"description\": \"Cool clean car\",\n  \"brand\": \"BMW\",\n  \"model\": \"X5\",\n  \"currency\": \"USD\",\n  \"price\": 15000,\n  \"priceUSD\": 15000,\n  \"priceRate\": 40,\n  \"region\": \"Lviv\"\n}"
+              "raw": "\n   {\n  \"title\": \"BMW\",\n  \"description\": \"Cool clean car\",\n  \"brand\": \"BMW\",\n  \"model\": \"x5\",\n  \"currency\": \"USD\",\n  \"price\": 15000,\n  \"priceUSD\": 15000,\n  \"priceRate\": 40,\n  \"region\": \"Lviv\"\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/cars/create",
@@ -1283,7 +1325,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Updated Car Title fool\",\n  \"price\": 16000,\n  \"region\":\"Lviv\",\n \"model\": [\"Camry\"]\n}"
+              "raw": "{\n  \"title\": \"Updated Car Title \",\n  \"price\": 16000,\n  \"region\":\"Lviv\",\n \"model\": [\"x5\"]\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/cars/edit/{{id}}",
@@ -1818,13 +1860,126 @@
               }
             },
             "url": {
-              "raw": "{{API_HOST}}/brands/suggest",
+              "raw": "{{API_HOST}}/brands/suggest/brand",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
                 "brands",
-                "suggest"
+                "suggest",
+                "brand"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "[Seller] POST /brands/suggest",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{sellerToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Audi\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{API_HOST}}/brands/suggest",
+                  "host": [
+                    "{{API_HOST}}"
+                  ],
+                  "path": [
+                    "brands",
+                    "suggest"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "53"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"35-G5wkkhYFKd3tDHVS7+rQh1afixM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 28 Aug 2025 19:22:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Brand \\\"Audi\\\" suggestion sent to admin\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "[Seller] Model suggest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sellerToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"brandName\": \"Audi\",\r\n  \"modelName\": \"x5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{API_HOST}}/brands/suggest/model",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "brands",
+                "suggest",
+                "model"
               ]
             }
           },
