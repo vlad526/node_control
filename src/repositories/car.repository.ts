@@ -17,10 +17,7 @@ export class CarRepository {
     }
 
     public findQuery(filters: FilterQuery<ICar> = {}) {
-        return  Car.find({
-            ...filters,
-            $or: [{ isDeleted: false }, { isDeleted: { $exists: false } }]
-        });
+        return Car.find(filters);
     }
 
     public async countActiveBySeller(sellerId: ObjectId | string): Promise<number> {
@@ -33,7 +30,7 @@ export class CarRepository {
 
     public async delete(id: string): Promise<void> {
         if (!id || !Types.ObjectId.isValid(id)) return;
-        await Car.findByIdAndUpdate(id, { isDeleted: true });
+        await Car.findByIdAndDelete(id);
     }
     public async updateCar(carId: Types.ObjectId, update: object) {
         return Car.findByIdAndUpdate(carId, update, { new: true }).exec();
@@ -41,6 +38,9 @@ export class CarRepository {
 
     public async deleteCar(carId: Types.ObjectId) {
         return Car.findByIdAndDelete(carId).exec();
+    }
+    public async countDocuments(filter: Record<string, unknown>): Promise<number> {
+        return Car.countDocuments(filter);
     }
 
 }

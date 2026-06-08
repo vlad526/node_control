@@ -84,6 +84,7 @@ export class CarService {
             priceEUR: converted.EUR,
             priceUAH: converted.UAH,
             priceRate: rates[data.currency],
+            priceSource: 'PrivatBank API',
         });
 
 
@@ -183,6 +184,7 @@ export class CarService {
             car.priceEUR = converted.EUR;
             car.priceUAH = converted.UAH;
             car.priceRate = rates[car.currency];
+            car.priceSource = 'PrivatBank API';
         }
 
 
@@ -250,8 +252,10 @@ export class CarService {
         return car;
     }
 
-    public async getAllCars(query: GetCarsQuery, user?: IUser): Promise<ICar[]> {
+
+    public async getAllCars(query: GetCarsQuery, user?: IUser) {
         const filter: Record<string, unknown> = {};
+
 
         if (query.region) filter.region = query.region;
         if (query.brand) filter.brand = query.brand;
@@ -261,24 +265,51 @@ export class CarService {
         if (query.minPrice) filter.price = { ...(filter.price as Record<string, unknown>), $gte: Number(query.minPrice) };
         if (query.maxPrice) filter.price = { ...(filter.price as Record<string, unknown>), $lte: Number(query.maxPrice) };
 
-
         if (user?.accountType === AccountType.PREMIUM) {
             if (query.adStatus) filter.adStatus = query.adStatus;
         } else {
             filter.adStatus = AdStatusEnum.ACTIVE;
         }
-        const cars = await carRepository.findQuery(filter).sort({ createdAt: -1 });
 
-        console.log(`Found cars: ${cars.length}`);
-        if (cars.length > 0) {
-            console.log('Sample car:', cars[0]);
-        }
 
-        return cars;
+        const page = Number(query.page) || 1;
+        const limit = Number(query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+
+        const [cars, total] = await Promise.all([
+
+            carRepository.findQuery(filter)
+                .sort({ createdAt: -1 })
+                .skip(skip)
+                .limit(limit),
+
+
+            carRepository.countDocuments(filter)
+        ]);
+
+        console.log(`Found cars on page ${page}: ${cars.length} (Total matching cars: ${total})`);
+
+
+        return {
+            data: cars,
+            meta: {
+                page,
+                limit,
+                total,
+                totalPages: Math.ceil(total / limit)
+            }
+        };
     }
     public async verifyCar(carId: string) {
         const objectId = new Types.ObjectId(carId);
-        return carRepository.updateCar(objectId, { verified: true });
+
+        return carRepository.updateCar(objectId, {
+            adStatus: AdStatusEnum.ACTIVE,
+            hasProfanity: false,
+            profaneWords: [],
+            editAttempts: 0
+        });
     }
 
     public async deleteCar(carId: string) {

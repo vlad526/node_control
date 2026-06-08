@@ -10,6 +10,8 @@ class AuthController {
     public async signUp(req: Request, res: Response, next: NextFunction) {
         try {
             const dto = req.body as ISignUpDTO;
+
+
             const { user, tokens } = await authService.signUp(dto);
 
             res.status(201).json({
@@ -54,6 +56,20 @@ class AuthController {
 
             await authService.verifyEmail(jwtPayload);
             res.status(200).json({ message: 'Email verified successfully' });
+        } catch (e) {
+            next(e);
+        }
+    }
+    public async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            const accessToken = req.get('Authorization')?.split(' ')[1];
+
+            if (accessToken) {
+                await authService.logout(accessToken);
+            }
+
+            res.status(204).send();
         } catch (e) {
             next(e);
         }

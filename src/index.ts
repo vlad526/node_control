@@ -8,6 +8,7 @@ import {adminRoutes} from './routes/admin.routes';
 import {seedDatabase} from './seeds/seedData';
 import {carRoutes} from './routes/car.routes';
 import {brandRoutes} from './routes/brand.routes';
+import {userRoutes} from "./routes/user.routes";
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use('/users', adminRoutes);
 app.use('/auth', authRoutes);
 app.use('/cars', carRoutes);
 app.use('/brands', brandRoutes);
+app.use('/users', userRoutes);
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

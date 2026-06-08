@@ -24,7 +24,6 @@ export interface ISignUpDTO {
     password: string;
     age: number;
     roles?: ('buyer' | 'seller')[];
-    accountType?: 'base' | 'premium';
 }
 class AuthService {
 
@@ -55,7 +54,7 @@ class AuthService {
             ...dto,
             password,
             roles: rolesToAssign.map(r => r._id),
-            accountType: dto.accountType === 'premium' ? AccountType.PREMIUM : AccountType.BASE,
+            accountType: AccountType.BASE,
         });
         await user.populate('roles');
 
@@ -183,6 +182,10 @@ class AuthService {
         });
 
         console.log(` Email verified for ${user.email}`);
+    }
+    public async logout(accessToken: string): Promise<void> {
+
+        await tokenRepository.deleteOne({ accessToken });
     }
 
 }

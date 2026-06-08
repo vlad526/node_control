@@ -34,4 +34,6 @@ export interface ICar {
      adStatus?: string;
      minPrice?: string;
      maxPrice?: string;
+     page?: string | number;
+     limit?: string | number;
  }

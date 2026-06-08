@@ -30,6 +30,11 @@ router.post(
     authMiddleware.checkAccessToken,
     userController.upgradeToPremium
 );
+router.post(
+    '/logout',
+    authMiddleware.checkAccessToken,
+    authController.logout
+);
 
 
 export const authRoutes = router;

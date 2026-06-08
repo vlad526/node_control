@@ -6,7 +6,7 @@ import {ObjectId} from '../types/common';
 
 class UserRepository {
     public async getList(query: IUserListQuery): Promise<[IUser[], number]> {
-        const filterObj: FilterQuery<IUser> = {'isVerified': false};
+        const filterObj: FilterQuery<IUser> = {};
         if (query.search) {
             filterObj.name = {$regex: query.search, $options: 'i'};
         }

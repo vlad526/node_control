@@ -37,7 +37,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user10@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"base\"\n}",
+              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user11@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"base\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -333,36 +333,185 @@
           ]
         },
         {
-          "name": "/ Premium",
+          "name": "/ Log out",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const body = pm.response.json();\r",
+                  "\r",
+                  "const accessToken = body.accessToken;\r",
+                  "const refreshToken = body.refreshToken;\r",
+                  "\r",
+                  "pm.environment.set(\"adminToken\", accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{sellerToken}}",
+                  "value": "{{adminToken}}",
                   "type": "string"
                 }
               ]
             },
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n     \"login\":\"admin@gmail.com\",\r\n    \"password\":\"admin\"\r\n         \r\n    // \"login\":\"Snoop@gmail.com\",\r\n    // \"password\":\"Snoop_d@@g1\"\r\n    \r\n}"
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
-              "raw": "{{API_HOST}}/auth/premium",
+              "raw": "{{API_HOST}}/auth/logout",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
                 "auth",
-                "premium"
+                "logout"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "POST / Sign In",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer ",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"email\": \"admin@example.com\",\n  \"password\": \"SuperSecurePassword123\"\n  \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://df3bab84-fdfd-4115-a4ad-ab405ae68844.mock.pstmn.io/auth/sign-in",
+                  "protocol": "https",
+                  "host": [
+                    "df3bab84-fdfd-4115-a4ad-ab405ae68844",
+                    "mock",
+                    "pstmn",
+                    "io"
+                  ],
+                  "path": [
+                    "auth",
+                    "sign-in"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 27 Aug 2025 10:25:34 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "975add9bf8842313-KBP"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=01c3ffcdd0185684"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=f2db46c1cba4e2aa"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "119"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1756290394"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "Express"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"5aa-qR7Fg7+gxp8R4gtGUIJiK27f5qc\""
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                },
+                {
+                  "key": "x-envoy-upstream-service-time",
+                  "value": "169"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "__cf_bm=jCnjIsn65O.A9lfZPTl6mkSeLtThVwxv8jJTOg8losQ-1756290334-1.0.1.1-HNxna_XjSI9Y_XyWv0dAID93gXZ5NGzirySwyPE7w2aKoaq.nenjxHqHp1FZpMIca3HfIpy0vh8nyd3d0GLWyMqC4DeTepvnKrDxLzg5hPE; path=/; expires=Wed, 27-Aug-25 10:55:34 GMT; domain=.pstmn.io; HttpOnly; Secure; SameSite=None"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"_id\": \"68a0fa4db4e1a9bd0d0b8a14\",\n        \"name\": \"Super Admin\",\n        \"email\": \"admin@example.com\",\n        \"password\": \"$2b$10$.c93f/k/9RsumJGRR4Ovi.oQ1TKXRVp.FZhBuX0z61kezwkd.ORA6\",\n        \"age\": 30,\n        \"roles\": [\n            {\n                \"_id\": \"689e257d5cea365637ad3843\",\n                \"name\": \"admin\",\n                \"createdAt\": \"2025-08-14T18:05:50.508Z\",\n                \"permissions\": [\n                    \"68a0f7835cea365637ad4f94\",\n                    \"68a0f7845cea365637ad4f99\",\n                    \"68a0f7835cea365637ad4f96\",\n                    \"68a0f7845cea365637ad4f9e\",\n                    \"68a0f7835cea365637ad4f98\",\n                    \"68a0f7845cea365637ad4f9c\",\n                    \"68a0f7835cea365637ad4f97\",\n                    \"68a0f7845cea365637ad4f9f\",\n                    \"68a0f7845cea365637ad4f9a\",\n                    \"68a0f7845cea365637ad4f9d\",\n                    \"68a0f7835cea365637ad4f95\",\n                    \"68a0f7845cea365637ad4f9b\"\n                ],\n                \"scope\": \"platform\",\n                \"updatedAt\": \"2025-08-27T09:35:28.310Z\",\n                \"organizationId\": \"689effb85cea365637ad3e0f\"\n            }\n        ],\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"organizationId\": null,\n        \"accountType\": \"base\",\n        \"createdAt\": \"2025-08-16T21:38:21.829Z\",\n        \"updatedAt\": \"2025-08-16T21:38:21.829Z\"\n    },\n    \"tokens\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTYyOTIxMDR9.Q7gRzKBBfDDzzkXLzKzayt_mmYSTGpyfN2mY5J_Qz_4\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGEwZmE0ZGI0ZTFhOWJkMGQwYjhhMTQiLCJyb2xlcyI6WyJhZG1pbiJdLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU2MjkwMzA0LCJleHAiOjE3NTY1NDk1MDR9.gJo9k5JR4r_Y7qES1stRG_RwnOKtAhl4ghLZmPIzUrU\"\n    }\n}"
+            }
+          ]
         }
       ]
     },
@@ -637,7 +786,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"isBanned\": \"true\"\n}"
+              "raw": "{\n  \"isBanned\": true\n}"
             },
             "url": {
               "raw": "{{API_HOST}}/users/ban/{{id}}",
@@ -829,6 +978,43 @@
       ]
     },
     {
+      "name": "Users",
+      "item": [
+        {
+          "name": "/ Premium",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{sellerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{API_HOST}}/auth/premium",
+              "host": [
+                "{{API_HOST}}"
+              ],
+              "path": [
+                "auth",
+                "premium"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Cars",
       "item": [
         {
@@ -885,6 +1071,18 @@
                 {
                   "key": "title",
                   "value": "Updated Car Title",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "2",
+                  "type": "text",
                   "disabled": true
                 }
               ]

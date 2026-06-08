@@ -3,7 +3,6 @@ import {carService} from '../services/car.service';
 import {IUser} from '../interfaces/user.interface';
 import {GetCarsQuery} from '../interfaces/car.interface';
 import {ApiError} from '../errors/api-error';
-import {emailService} from '../services/email.service';
 
 class CarController {
 
@@ -12,15 +11,6 @@ class CarController {
             const user = req.user as IUser;
             const car = await carService.createCar(user, req.body);
 
-
-            if (car.hasProfanity) {
-                console.warn(`[Moderation Warning] Car ad created by ${user.email} flagged for profanity. Email sent to manager.`);
-                await emailService.sendCarModerationEmail(
-                    car,
-                    { name: user.name, email: user.email },
-                    'Action Required: Profanity detected in car advertisement'
-                );
-            }
             res.status(201).json(car);
         } catch (e) {
             next(e);
@@ -76,8 +66,8 @@ class CarController {
     public async getAll(req: Request<unknown, unknown, unknown, GetCarsQuery>, res: Response, next: NextFunction) {
         try {
             const user = req.user as IUser | undefined;
-            const cars = await carService.getAllCars(req.query, user);
-            res.status(200).json(cars);
+            const paginatedResult = await carService.getAllCars(req.query, user);
+            res.status(200).json(paginatedResult);
         } catch (err) {
             next(err);
         }
