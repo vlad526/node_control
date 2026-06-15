@@ -30,7 +30,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 
-app.use('/users', adminRoutes);
+app.use('/admin', adminRoutes);
 app.use('/auth', authRoutes);
 app.use('/cars', carRoutes);
 app.use('/brands', brandRoutes);

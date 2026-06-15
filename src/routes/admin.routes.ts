@@ -12,7 +12,7 @@ const router = Router();
 
 
 router.get(
-    '/',
+    '/users',
     authMiddleware.checkAccessToken,
     requirePermissionMiddleware(PermissionEnum.ALL),
     adminController.listUsers

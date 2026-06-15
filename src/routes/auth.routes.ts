@@ -4,7 +4,6 @@ import {userMiddleware} from '../middlewares/user.middleware';
 import {authController} from '../controllers/auth.controller';
 import {signInSchema, signUpSchema} from '../validators/user.validator';
 import {authMiddleware} from '../middlewares/auth.middleware';
-import {userController} from "../controllers/user.controller";
 
 
 const router = Router();
@@ -24,11 +23,6 @@ router.post(
     '/refresh',
     authMiddleware.checkRefreshToken,
     authController.refreshToken,
-);
-router.post(
-    '/premium',
-    authMiddleware.checkAccessToken,
-    userController.upgradeToPremium
 );
 router.post(
     '/logout',

@@ -2,7 +2,6 @@ import Joi from 'joi';
 import {CurrencyEnum} from '../enums/currency.enum';
 import {AdStatusEnum} from '../enums/ad-status.enum';
 
-
 export const createSchema = Joi.object({
     title: Joi.string().trim().min(2).max(100).required(),
 
@@ -10,10 +9,8 @@ export const createSchema = Joi.object({
 
     brand: Joi.string().trim().required(),
 
-    model: Joi.alternatives().try(
-        Joi.string().trim(),
-        Joi.array().items(Joi.string().trim().min(1))
-    ).required(),
+
+    model: Joi.string().trim().required(),
 
     currency: Joi.string()
         .valid(...Object.values(CurrencyEnum))
@@ -44,6 +41,7 @@ export const createSchema = Joi.object({
     createdAt: Joi.date().optional(),
     updatedAt: Joi.date().optional(),
 });
+
 export const updateSchema = createSchema.fork(Object.keys(createSchema.describe().keys), (field) =>
     field.optional()
 );

@@ -225,19 +225,21 @@ export class CarService {
         };
     }
     public async updatePrices(): Promise<void> {
-
         const cars = await carRepository.findQuery({ adStatus: AdStatusEnum.ACTIVE });
         const rates = await this.currencyService.getAllRates();
 
         await Promise.all(
             cars.map(async (car) => {
-                if (car.currency !== 'UAH') {
-                    const converted = convertPrices(car.price, car.currency, rates);
-                    await carRepository.updateCar(car._id, {
-                        priceUAH: converted.UAH,
-                        priceRate: rates[car.currency]
-                    });
-                }
+                const converted = convertPrices(car.price, car.currency, rates);
+
+
+                await carRepository.updateCar(car._id, {
+                    priceUAH: converted.UAH,
+                    priceUSD: converted.USD,
+                    priceEUR: converted.EUR,
+                    priceRate: rates[car.currency] || 1,
+                    priceSource: 'PrivatBank API'
+                });
             })
         );
     }
@@ -256,9 +258,19 @@ export class CarService {
     public async getAllCars(query: GetCarsQuery, user?: IUser) {
         const filter: Record<string, unknown> = {};
 
-
         if (query.region) filter.region = query.region;
-        if (query.brand) filter.brand = query.brand;
+
+
+        if (query.brand) {
+            const brandDoc = await Brand.findOne({ name: { $regex: new RegExp(`^${query.brand}$`, 'i') } });
+
+            if (brandDoc) {
+                filter.brand = brandDoc._id;
+            } else {
+                filter.brand = null;
+            }
+        }
+
         if (query.currency) filter.currency = query.currency;
         if (query.adStatus) filter.adStatus = query.adStatus;
 
@@ -271,25 +283,19 @@ export class CarService {
             filter.adStatus = AdStatusEnum.ACTIVE;
         }
 
-
         const page = Number(query.page) || 1;
         const limit = Number(query.limit) || 10;
         const skip = (page - 1) * limit;
 
-
         const [cars, total] = await Promise.all([
-
             carRepository.findQuery(filter)
                 .sort({ createdAt: -1 })
                 .skip(skip)
                 .limit(limit),
-
-
             carRepository.countDocuments(filter)
         ]);
 
         console.log(`Found cars on page ${page}: ${cars.length} (Total matching cars: ${total})`);
-
 
         return {
             data: cars,

@@ -1,21 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { ObjectSchema } from 'joi';
 import { ApiError } from '../errors/api-error';
-import {isObjectIdOrHexString} from 'mongoose';
+
 
 class CommonMiddleware {
-    public isIdValid(key: string) {
-        return (req: Request, res: Response, next: NextFunction) => {
-            try {
-                if (!isObjectIdOrHexString(req.params[key])) {
-                    throw new ApiError('Invalid ID', 400);
-                }
-                next();
-            } catch (e) {
-                next(e);
-            }
-        };
-    }
+
 
     public isBodyValid(validator: ObjectSchema) {
         return async (req: Request, res: Response, next: NextFunction) => {

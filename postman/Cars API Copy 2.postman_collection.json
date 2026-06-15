@@ -37,7 +37,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user11@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"base\"\n}",
+              "raw": "{\n  \"name\": \"user\",\n  \"age\": 20,\n  \"email\": \"user13@gmail.com\",\n  \"password\": \"Password123\",\n  \"roles\": [\"seller\"],\n  \"accountType\":\"base\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -551,11 +551,12 @@
               }
             },
             "url": {
-              "raw": "{{API_HOST}}/users",
+              "raw": "{{API_HOST}}/admin/users",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
+                "admin",
                 "users"
               ]
             }
@@ -662,15 +663,15 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"userId\": \"6a0339287789dd548e549e0e\",\n  \"roleName\": \"manager\"\n}"
+              "raw": "{\n  \"userId\": \"6a2715abc283667abc62eaa7\",\n  \"roleName\": \"manager\"\n}"
             },
             "url": {
-              "raw": "{{API_HOST}}/users/assign",
+              "raw": "{{API_HOST}}/admin/assign",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
-                "users",
+                "admin",
                 "assign"
               ]
             }
@@ -789,12 +790,12 @@
               "raw": "{\n  \"isBanned\": true\n}"
             },
             "url": {
-              "raw": "{{API_HOST}}/users/ban/{{id}}",
+              "raw": "{{API_HOST}}/admin/ban/{{id}}",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
-                "users",
+                "admin",
                 "ban",
                 "{{id}}"
               ]
@@ -893,12 +894,12 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{API_HOST}}/users/{{id}}",
+              "raw": "{{API_HOST}}/admin/{{id}}",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
-                "users",
+                "admin",
                 "{{id}}"
               ]
             }
@@ -1000,12 +1001,12 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{API_HOST}}/auth/premium",
+              "raw": "{{API_HOST}}/users/premium",
               "host": [
                 "{{API_HOST}}"
               ],
               "path": [
-                "auth",
+                "users",
                 "premium"
               ]
             }
