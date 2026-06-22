@@ -75,8 +75,8 @@ class CarController {
 
     public async verifyCar(req: Request, res: Response, next: NextFunction) {
         try {
-            const { carId } = req.params;
-            const updatedCar = await carService.verifyCar(carId);
+            const id = req.params.id || req.params.carId;
+            const updatedCar = await carService.verifyCar(id);
             res.status(200).json({
                 message: 'Advertisement has been successfully verified and activated',
                 car: updatedCar
@@ -88,8 +88,12 @@ class CarController {
 
     public async delete(req: Request, res: Response, next: NextFunction) {
         try {
-            const { carId } = req.params;
-            await carService.deleteCar(carId);
+            const id = req.params.id || req.params.carId;
+
+            const user = req.user as IUser;
+
+            await carService.deleteCar(id, user);
+
             res.status(200).json({ message: 'Car advertisement has been permanently deleted' });
         } catch (err) {
             next(err);

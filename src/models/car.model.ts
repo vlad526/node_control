@@ -42,7 +42,6 @@ const CarSchema = new Schema<ICar>(
         hasProfanity: { type: Boolean, default: false },
         profaneWords: [{ type: String }],
         editAttempts: { type: Number, default: 0 },
-        views: [{ date: { type: Date, default: Date.now } }],
         region: { type: String, required: true },
     },
     { timestamps: true }

@@ -21,7 +21,6 @@ export interface ICar {
     hasProfanity?: boolean;
     profaneWords?: string[];
     editAttempts?: number;
-    views: Array<{ date: Date }>;
     region: string;
     createdAt?: Date;
     updatedAt?: Date;

@@ -12,6 +12,7 @@ import {Types} from 'mongoose';
 import {ApiError} from '../errors/api-error';
 import {CarModel} from "../models/car-model.model";
 import {Brand} from "../models/brand.model";
+import {CarView} from "../models/car-view.model";
 
 
 export class CarService {
@@ -194,17 +195,23 @@ export class CarService {
         return car;
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async getCarStats(carId: string, user: IUser) {
-
-
+     public async getCarStats(carId: string, user: IUser) {
         const car = await carRepository.findById(carId);
         if (!car) return null;
 
         const now = new Date();
-        const totalViews = car.views.length;
-        const viewsToday = car.views.filter(v => v.date.toDateString() === now.toDateString()).length;
-        const viewsWeek = car.views.filter(v => v.date > new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)).length;
-        const viewsMonth = car.views.filter(v => v.date > new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)).length;
+        const startOfDay = new Date(now.setHours(0, 0, 0, 0));
+        const startOfWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        const startOfMonth = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+
+        const [totalViews, viewsToday, viewsWeek, viewsMonth] = await Promise.all([
+
+            CarView.countDocuments({ carId: car._id }),
+            CarView.countDocuments({ carId: car._id, date: { $gte: startOfDay } }),
+            CarView.countDocuments({ carId: car._id, date: { $gte: startOfWeek } }),
+            CarView.countDocuments({ carId: car._id, date: { $gte: startOfMonth } })
+        ]);
 
         const avgPriceRegion = await Car.aggregate([
             {$match: { region: car.region, adStatus: AdStatusEnum.ACTIVE }},
@@ -224,6 +231,7 @@ export class CarService {
             avgPriceUA: avgPriceUA[0]?.avgPrice || 0,
         };
     }
+
     public async updatePrices(): Promise<void> {
         const cars = await carRepository.findQuery({ adStatus: AdStatusEnum.ACTIVE });
         const rates = await this.currencyService.getAllRates();
@@ -248,8 +256,8 @@ export class CarService {
         const car = await carRepository.findById(carId);
         if (!car) return null;
 
-        car.views.push({ date: new Date() });
-        await car.save();
+
+        await CarView.create({ carId: car._id });
 
         return car;
     }
@@ -318,7 +326,21 @@ export class CarService {
         });
     }
 
-    public async deleteCar(carId: string) {
+    public async deleteCar(carId: string, user: IUser) {
+        const car = await carRepository.findById(carId);
+
+        if (!car) {
+            throw new ApiError('Car not found', 404);
+        }
+
+        const isAdminOrManager = user.roles?.some((r: any) =>
+            r.name === 'admin' || r.name === 'manager'
+        );
+
+        if (car.sellerId.toString() !== user._id.toString() && !isAdminOrManager) {
+            throw new ApiError('Forbidden: You can only delete your own cars', 403);
+        }
+
         const objectId = new Types.ObjectId(carId);
         return carRepository.deleteCar(objectId);
     }

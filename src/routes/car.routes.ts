@@ -50,7 +50,6 @@ router.post(
 
 router.delete('/:carId',
     authMiddleware.checkAccessToken,
-    requirePermissionMiddleware('delete_car'),
     carController.delete);
 
 export const carRoutes = router;
